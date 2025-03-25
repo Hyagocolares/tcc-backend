@@ -1,0 +1,372 @@
+[{
+    "request": {
+        "id": 4,
+        "status": "Em andamento",
+        "createdAt": "2025-03-24T02:40:04.809Z",
+        "user": {
+            "id": 3,
+            "name": "Hyago Colares"
+        },
+        "subjects": [
+            {
+                "id": 2,
+                "subject": {
+                    "id": 5,
+                    "name": "Algoritmo de codigo",
+                    "code": "ALG467",
+                    "courses": [
+                        {
+                            "id": 32,
+                            "name": "Ciência da Computação"
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+},
+{
+    "requests": [
+        {
+            "id": 4,
+            "status": "Em andamento",
+            "createdAt": "2025-03-24T02:40:04.809Z",
+            "updatedAt": "2025-03-24T03:17:51.358Z",
+            "user": {
+                "id": 3,
+                "name": "Hyago Colares",
+                "email": "hyago.colares@ufra.edu.br",
+                "password": "$2b$10$4VgAqnQyBh7LMBX0FjiZpO99yBaEjF87.Ld9u.56DIfrdR7zCz1mu",
+                "registration": null,
+                "category": "Director",
+                "photoUrl": null,
+                "isFirstLogin": true,
+                "createdAt": "2025-03-21T21:11:20.018Z",
+                "updatedAt": "2025-03-21T21:11:20.018Z"
+            },
+            "companions": [
+                {
+                    "id": 2,
+                    "name": "Renato Silva",
+                    "email": "renato.silva@ufra.edu.br",
+                    "password": "$2b$10$mZJzO8w2fXxYiT3FKB1mLux48tb0tJDKhyNpn2Zu/syyB7bO/4ssG",
+                    "registration": null,
+                    "category": "Coordinator",
+                    "photoUrl": null,
+                    "isFirstLogin": true,
+                    "createdAt": "2025-03-21T21:11:13.614Z",
+                    "updatedAt": "2025-03-21T21:11:13.614Z"
+                },
+                {
+                    "id": 7,
+                    "name": "Ashaphe Colares",
+                    "email": "ashaphe.colares@example.com",
+                    "password": "senha123",
+                    "registration": "202301234",
+                    "category": "Coordinator",
+                    "photoUrl": "https://avatars.githubusercontent.com/u/176313660?v=4",
+                    "isFirstLogin": true,
+                    "createdAt": "2025-03-23T03:01:17.202Z",
+                    "updatedAt": "2025-03-23T03:01:17.202Z"
+                }
+            ],
+            "subjects": [
+                {
+                    "id": 3,
+                    "classGroup": "B2",
+                    "studentCount": 25,
+                    "workload": 50,
+                    "fileData": "outroBase64string",
+                    "fileName": "novo_assunto.pdf",
+                    "fileType": "application/pdf",
+                    "createdAt": "2025-03-24T03:17:51.358Z",
+                    "updatedAt": "2025-03-24T03:17:51.358Z",
+                    "subject": {
+                        "id": 6,
+                        "name": "Algoritmos",
+                        "code": "ALG46s7",
+                        "workload": 60,
+                        "createdAt": "2025-03-23T07:51:11.963Z",
+                        "updatedAt": "2025-03-23T07:51:11.963Z",
+                        "courses": [
+                            {
+                                "id": 1,
+                                "name": "Engenharia de Software",
+                                "createdAt": "2025-03-22T04:30:40.849Z",
+                                "updatedAt": "2025-03-22T07:01:58.628Z",
+                                "coordinators": [],
+                                "teachers": []
+                            },
+                            {
+                                "id": 32,
+                                "name": "Ciência da Computação",
+                                "createdAt": "2025-03-23T08:41:29.699Z",
+                                "updatedAt": "2025-03-23T08:42:37.351Z",
+                                "coordinators": [
+                                    {
+                                        "id": 2,
+                                        "name": "Renato Silva",
+                                        "email": "renato.silva@ufra.edu.br",
+                                        "password": "$2b$10$mZJzO8w2fXxYiT3FKB1mLux48tb0tJDKhyNpn2Zu/syyB7bO/4ssG",
+                                        "registration": null,
+                                        "category": "Coordinator",
+                                        "photoUrl": null,
+                                        "isFirstLogin": true,
+                                        "createdAt": "2025-03-21T21:11:13.614Z",
+                                        "updatedAt": "2025-03-21T21:11:13.614Z",
+                                        "supervision": null
+                                    }
+                                ],
+                                "teachers": [
+                                    {
+                                        "id": 1,
+                                        "name": "Fabricio Araujo",
+                                        "email": "fabricio.araujo@ufra.edu.br",
+                                        "password": "$2b$10$9.TNNmZQfxpkoZPQ4WesQOwhx0eSC5vcc3ngKK5iowR9ys7/8Yici",
+                                        "registration": null,
+                                        "category": "Teacher",
+                                        "photoUrl": null,
+                                        "isFirstLogin": true,
+                                        "createdAt": "2025-03-21T21:10:17.254Z",
+                                        "updatedAt": "2025-03-21T21:10:17.254Z",
+                                        "academicBackground": null
+                                    }
+                                ]
+                            },
+                            {
+                                "id": 2,
+                                "name": "Sistemas de Informacao",
+                                "createdAt": "2025-03-22T05:56:00.065Z",
+                                "updatedAt": "2025-03-22T05:56:00.065Z",
+                                "coordinators": [],
+                                "teachers": []
+                            }
+                        ],
+                        "teachers": [
+                            {
+                                "id": 1,
+                                "name": "Fabricio Araujo",
+                                "email": "fabricio.araujo@ufra.edu.br",
+                                "password": "$2b$10$9.TNNmZQfxpkoZPQ4WesQOwhx0eSC5vcc3ngKK5iowR9ys7/8Yici",
+                                "registration": null,
+                                "category": "Teacher",
+                                "photoUrl": null,
+                                "isFirstLogin": true,
+                                "createdAt": "2025-03-21T21:10:17.254Z",
+                                "updatedAt": "2025-03-21T21:10:17.254Z",
+                                "academicBackground": null
+                            }
+                        ],
+                        "coordinators": [
+                            {
+                                "id": 2,
+                                "name": "Renato Silva",
+                                "email": "renato.silva@ufra.edu.br",
+                                "password": "$2b$10$mZJzO8w2fXxYiT3FKB1mLux48tb0tJDKhyNpn2Zu/syyB7bO/4ssG",
+                                "registration": null,
+                                "category": "Coordinator",
+                                "photoUrl": null,
+                                "isFirstLogin": true,
+                                "createdAt": "2025-03-21T21:11:13.614Z",
+                                "updatedAt": "2025-03-21T21:11:13.614Z",
+                                "supervision": null
+                            }
+                        ]
+                    }
+                },
+                {
+                    "id": 2,
+                    "classGroup": "A1 - Atualizado",
+                    "studentCount": 32,
+                    "workload": 65,
+                    "fileData": "novoBase64encodedstring",
+                    "fileName": "material_atualizado.pdf",
+                    "fileType": "application/pdf",
+                    "createdAt": "2025-03-24T03:17:51.358Z",
+                    "updatedAt": "2025-03-24T03:17:51.358Z",
+                    "subject": {
+                        "id": 5,
+                        "name": "Algoritmo de codigo",
+                        "code": "ALG467",
+                        "workload": 60,
+                        "createdAt": "2025-03-23T06:36:04.755Z",
+                        "updatedAt": "2025-03-23T07:39:03.798Z",
+                        "courses": [
+                            {
+                                "id": 2,
+                                "name": "Sistemas de Informacao",
+                                "createdAt": "2025-03-22T05:56:00.065Z",
+                                "updatedAt": "2025-03-22T05:56:00.065Z",
+                                "coordinators": [],
+                                "teachers": []
+                            },
+                            {
+                                "id": 1,
+                                "name": "Engenharia de Software",
+                                "createdAt": "2025-03-22T04:30:40.849Z",
+                                "updatedAt": "2025-03-22T07:01:58.628Z",
+                                "coordinators": [],
+                                "teachers": []
+                            },
+                            {
+                                "id": 32,
+                                "name": "Ciência da Computação",
+                                "createdAt": "2025-03-23T08:41:29.699Z",
+                                "updatedAt": "2025-03-23T08:42:37.351Z",
+                                "coordinators": [
+                                    {
+                                        "id": 2,
+                                        "name": "Renato Silva",
+                                        "email": "renato.silva@ufra.edu.br",
+                                        "password": "$2b$10$mZJzO8w2fXxYiT3FKB1mLux48tb0tJDKhyNpn2Zu/syyB7bO/4ssG",
+                                        "registration": null,
+                                        "category": "Coordinator",
+                                        "photoUrl": null,
+                                        "isFirstLogin": true,
+                                        "createdAt": "2025-03-21T21:11:13.614Z",
+                                        "updatedAt": "2025-03-21T21:11:13.614Z",
+                                        "supervision": null
+                                    }
+                                ],
+                                "teachers": [
+                                    {
+                                        "id": 1,
+                                        "name": "Fabricio Araujo",
+                                        "email": "fabricio.araujo@ufra.edu.br",
+                                        "password": "$2b$10$9.TNNmZQfxpkoZPQ4WesQOwhx0eSC5vcc3ngKK5iowR9ys7/8Yici",
+                                        "registration": null,
+                                        "category": "Teacher",
+                                        "photoUrl": null,
+                                        "isFirstLogin": true,
+                                        "createdAt": "2025-03-21T21:10:17.254Z",
+                                        "updatedAt": "2025-03-21T21:10:17.254Z",
+                                        "academicBackground": null
+                                    }
+                                ]
+                            }
+                        ],
+                        "teachers": [
+                            {
+                                "id": 1,
+                                "name": "Fabricio Araujo",
+                                "email": "fabricio.araujo@ufra.edu.br",
+                                "password": "$2b$10$9.TNNmZQfxpkoZPQ4WesQOwhx0eSC5vcc3ngKK5iowR9ys7/8Yici",
+                                "registration": null,
+                                "category": "Teacher",
+                                "photoUrl": null,
+                                "isFirstLogin": true,
+                                "createdAt": "2025-03-21T21:10:17.254Z",
+                                "updatedAt": "2025-03-21T21:10:17.254Z",
+                                "academicBackground": null
+                            }
+                        ],
+                        "coordinators": [
+                            {
+                                "id": 2,
+                                "name": "Renato Silva",
+                                "email": "renato.silva@ufra.edu.br",
+                                "password": "$2b$10$mZJzO8w2fXxYiT3FKB1mLux48tb0tJDKhyNpn2Zu/syyB7bO/4ssG",
+                                "registration": null,
+                                "category": "Coordinator",
+                                "photoUrl": null,
+                                "isFirstLogin": true,
+                                "createdAt": "2025-03-21T21:11:13.614Z",
+                                "updatedAt": "2025-03-21T21:11:13.614Z",
+                                "supervision": null
+                            }
+                        ]
+                    }
+                }
+            ],
+            "locations": [
+                {
+                    "id": 2,
+                    "location": "Auditório Principal - Alterado",
+                    "municipality": "Cidade Exemplo",
+                    "periodStart": "2025-04-01T08:00:00.000Z",
+                    "periodEnd": "2025-04-01T10:00:00.000Z",
+                    "totalDistanceKm": "15.50",
+                    "createdAt": "2025-03-24T03:17:51.358Z",
+                    "updatedAt": "2025-03-24T03:17:51.358Z"
+                },
+                {
+                    "id": 3,
+                    "location": "Sala 101",
+                    "municipality": "Cidade Exemplo",
+                    "periodStart": "2025-04-01T10:00:00.000Z",
+                    "periodEnd": "2025-04-01T12:00:00.000Z",
+                    "totalDistanceKm": "5.00",
+                    "createdAt": "2025-03-24T03:17:51.358Z",
+                    "updatedAt": "2025-03-24T03:17:51.358Z"
+                }
+            ],
+            "itinerary": [
+                {
+                    "id": 2,
+                    "date": "2025-04-01",
+                    "origin": "Casa",
+                    "destination": "Escola",
+                    "activity": "Transporte escolar",
+                    "departureTime": "2025-04-01T07:45:00.000Z",
+                    "arrivalTime": "2025-04-01T08:15:00.000Z",
+                    "unpavedRoadKm": 2,
+                    "kilometers": "10.00",
+                    "roadCondition": "Boa",
+                    "hasWoodenBridge": false,
+                    "hasFerry": false,
+                    "hasToll": false,
+                    "createdAt": "2025-03-24T03:17:51.358Z",
+                    "updatedAt": "2025-03-24T03:17:51.358Z"
+                }
+            ],
+            "resources": [
+                {
+                    "id": 2,
+                    "resource": "Projetor",
+                    "quantity": 1,
+                    "quantityPerDay": 1,
+                    "createdAt": "2025-03-24T03:17:51.358Z",
+                    "updatedAt": "2025-03-24T03:17:51.358Z"
+                },
+                {
+                    "id": 3,
+                    "resource": "Microfone",
+                    "quantity": 2,
+                    "quantityPerDay": 1,
+                    "createdAt": "2025-03-24T03:17:51.358Z",
+                    "updatedAt": "2025-03-24T03:17:51.358Z"
+                }
+            ],
+            "teacher": {
+                "id": 1,
+                "name": "Fabricio Araujo",
+                "email": "fabricio.araujo@ufra.edu.br",
+                "password": "$2b$10$9.TNNmZQfxpkoZPQ4WesQOwhx0eSC5vcc3ngKK5iowR9ys7/8Yici",
+                "registration": null,
+                "category": "Teacher",
+                "photoUrl": null,
+                "isFirstLogin": true,
+                "createdAt": "2025-03-21T21:10:17.254Z",
+                "updatedAt": "2025-03-21T21:10:17.254Z",
+                "academicBackground": null
+            },
+            "coordinator": {
+                "id": 3,
+                "name": "Hyago Colares",
+                "email": "hyago.colares@ufra.edu.br",
+                "password": "$2b$10$4VgAqnQyBh7LMBX0FjiZpO99yBaEjF87.Ld9u.56DIfrdR7zCz1mu",
+                "registration": null,
+                "category": "Director",
+                "photoUrl": null,
+                "isFirstLogin": true,
+                "createdAt": "2025-03-21T21:11:20.018Z",
+                "updatedAt": "2025-03-21T21:11:20.018Z",
+                "supervision": null
+            },
+            "teacherConsentDisciplines": [],
+            "teacherConsents": [],
+            "coordinatorConsents": [],
+            "directorConsents": []
+        }
+    ]
+}]
