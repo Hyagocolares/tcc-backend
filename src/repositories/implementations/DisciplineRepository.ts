@@ -3,15 +3,12 @@ import { Repository } from 'typeorm';
 import AppDataSource from '../../config/ormconfig';
 import { IDisciplineRepository } from '../IDisciplineRepository';
 import { Discipline } from '../../entities/course/DisciplineEntity';
-import { Course } from '../../entities/course/CourseEntity';
 
 export default class DisciplineRepository implements IDisciplineRepository {
   private repository: Repository<Discipline>;
-  private repositoryCourse: Repository<Course>;
 
   constructor() {
     this.repository = AppDataSource.getRepository(Discipline);
-    this.repositoryCourse = AppDataSource.getRepository(Course);
   }
 
   async createDiscipline(discipline: Partial<Discipline>): Promise<Discipline> {
@@ -33,42 +30,30 @@ export default class DisciplineRepository implements IDisciplineRepository {
   }
 
   async updateDiscipline(id: number, discipline: Partial<Discipline>): Promise<Discipline> {
+    console.log(`🔍 Dados recebidos no repositório (update) para ID ${id}:`, JSON.stringify(discipline, null, 2));
+    
     const existingDiscipline = await this.repository.findOne({
-        where: { id },
-        relations: ["courses", "teachers", "coordinators"]
+      where: { id },
+      relations: ["courses", "teachers", "coordinators"]
     });
 
-    if (!existingDiscipline) throw new Error("Discipline not found");
-
-      existingDiscipline.name = discipline.name || existingDiscipline.name;
-      if (discipline.courses) existingDiscipline.courses = discipline.courses;
-      if (discipline.teachers) existingDiscipline.teachers = discipline.teachers;
-      if (discipline.coordinators) existingDiscipline.coordinators = discipline.coordinators;
-    
-      return await this.repository.save(existingDiscipline);
+    if (!existingDiscipline) {
+      console.warn(`⚠️ Discipline com ID ${id} não encontrado.`);
+      throw new Error("Discipline not found");
     }
 
-  // async updateDiscipline(id: number, discipline: Partial<Discipline>): Promise<Discipline> {
-  //   await this.repository.update(id, discipline);
-  //   const updated = await this.repository.findOneBy({ id });
-  //   if (!updated) throw new Error("Discipline not found");
-  //   return updated;
-  // }
+    if (discipline.name) existingDiscipline.name = discipline.name;
+    if (discipline.code) existingDiscipline.code = discipline.code;
+    if (discipline.workload) existingDiscipline.workload = discipline.workload;
+
+    if (discipline.courses) existingDiscipline.courses = discipline.courses;
+    if (discipline.teachers) existingDiscipline.teachers = discipline.teachers;
+    if (discipline.coordinators) existingDiscipline.coordinators = discipline.coordinators;
+
+    return await this.repository.save(existingDiscipline);
+  }
 
   async deleteDiscipline(id: number): Promise<void> {
-    const discipline = await this.repository.findOne({
-      where: { id },
-      relations: ["courses"]
-    });
-    if (!discipline) throw new Error("Discipline not found");
-
-    if (discipline.courses && discipline.courses.length > 0) {
-      for (const course of discipline.courses) {
-        course.disciplines = course.disciplines.filter(d => d.id !== discipline.id);
-        await this.repositoryCourse.save(course);
-      }
-    }
-
     await this.repository.delete(id);
   }
 

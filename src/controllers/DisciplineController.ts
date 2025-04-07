@@ -42,12 +42,23 @@ class DisciplineController {
 
   async updateDiscipline(req: Request, res: Response): Promise<void> {
     try {
+      console.log("📥 [Controller] Dados recebidos para atualização:", JSON.stringify(req.body, null, 2));
+
       const disciplineRepository = new DisciplineRepository()
       const { id } = req.params
       const disciplineData = req.body
-      const updatedDiscipline = await disciplineRepository.updateDiscipline(Number(id), disciplineData)
+
+      const { user, ...filteredDisciplineData } = disciplineData;
+      console.log("🔍 [Controller] Dados filtrados para atualização:", JSON.stringify(filteredDisciplineData, null, 2));
+
+      const updatedDiscipline = await disciplineRepository.updateDiscipline(Number(id), filteredDisciplineData)
+
+      console.log("✅ [Controller] Curso atualizado com sucesso:", JSON.stringify(updatedDiscipline, null, 2));
       res.status(200).json({ message: "Discipline updated", discipline: updatedDiscipline })
+      
+      return
     } catch (error: any) {
+      console.error("❌ [Controller] Erro ao atualizar discipline:", error);
       return exceptionRouter(req, res, error)
     }
   }
@@ -58,7 +69,9 @@ class DisciplineController {
       const { id } = req.params
       await disciplineRepository.deleteDiscipline(Number(id))
       res.status(200).json({ message: "Discipline deleted" })
+      return
     } catch (error: any) {
+      console.error(`❌ Erro ao deletar disciplina: `, error);
       return exceptionRouter(req, res, error)
     }
   }

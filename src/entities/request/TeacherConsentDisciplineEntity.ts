@@ -4,14 +4,12 @@ import {
   PrimaryGeneratedColumn,
   Column,
   ManyToOne,
-  OneToOne,
-  JoinColumn,
   CreateDateColumn,
   UpdateDateColumn,
 } from "typeorm"
 import { Teacher } from "../user/UserEntity"
 import { Discipline } from "../course/DisciplineEntity"
-import { TeacherConsent } from "../consent/ConsentEntity"
+// import { TeacherConsent } from "../consent/ConsentEntity"
 import { Request } from "./RequestEntity"
 
 @Entity("teacher_consent_disciplines")
@@ -25,20 +23,16 @@ export default class TeacherConsentDiscipline {
   @ManyToOne(() => Discipline)
   discipline: Discipline
 
-  @Column({ type: "date" })
-  date: Date
+  @Column({ name: "date", type: "date" })
+  date: string
 
-  @Column({ name: "time_in", type: "time" })
+  @Column({ name: "timeIn", type: "time" })
   timeIn: string
 
-  @Column({ name: "time_out", type: "time" })
+  @Column({ name: "timeOut", type: "time" })
   timeOut: string
 
-  @OneToOne(() => TeacherConsent)
-  @JoinColumn()
-  consent: TeacherConsent
-
-  @ManyToOne(() => Request, request => request.teacherConsents, { onDelete: 'CASCADE' })
+  @ManyToOne(() => Request, request => request.consent, { onDelete: 'CASCADE' })
   request: Request
 
   @CreateDateColumn({ name: "created_at" })

@@ -62,6 +62,8 @@ class CourseController {
 
       console.log("✅ [Controller] Curso atualizado com sucesso:", JSON.stringify(updatedCourse, null, 2));
       res.status(200).json({ message: "Course updated", course: updatedCourse })
+      
+      return
     } catch (error: any) {
       console.error("❌ [Controller] Erro ao atualizar curso:", error);
       return exceptionRouter(req, res, error)
@@ -74,6 +76,7 @@ class CourseController {
       const { id } = req.params
       await courseRepository.deleteCourse(Number(id))
       res.status(200).json({ message: "Course deleted" })
+      return
     } catch (error: any) {
       console.error(`❌ Erro ao deletar curso: `, error);
       return exceptionRouter(req, res, error)
@@ -90,7 +93,6 @@ class CourseController {
       return exceptionRouter(req, res, error)
     }
   }
-
 }
 
 export default new CourseController()

@@ -1,0 +1,29 @@
+[
+    {
+        "request": {
+            "id": 4,
+            "status": "Em andamento",
+            "createdAt": "2025-03-24T02:40:04.809Z",
+            "user": {
+                "id": 3,
+                "name": "Hyago Colares"
+            },
+            "subjects": [
+                {
+                    "id": 2,
+                    "subject": {
+                        "id": 5,
+                        "name": "Algoritmo de codigo",
+                        "code": "ALG467",
+                        "courses": [
+                            {
+                                "id": 32,
+                                "name": "Ciência da Computação"
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    }
+]

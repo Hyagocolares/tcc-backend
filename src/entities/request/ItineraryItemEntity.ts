@@ -14,8 +14,8 @@ export default class ItineraryItem {
   @PrimaryGeneratedColumn()
   id: number
 
-  @Column({ type: "date" })
-  date: Date
+  @Column({ name: "date", type: "date" })
+  date: string
 
   @Column({ length: 100 })
   origin: string
@@ -26,14 +26,14 @@ export default class ItineraryItem {
   @Column({ type: "text" })
   activity: string
 
-  @Column({ type: "timestamp" })
-  departureTime: Date
+  @Column({ type: "time" })
+  departureTime: string
 
-  @Column({ type: "timestamp" })
-  arrivalTime: Date
+  @Column({ type: "time" })
+  arrivalTime: string
 
-  @Column({ name: "unpaved_road_km", type: "float" })
-  unpavedRoadKm: number
+  @Column({ name: "unpaved_road_km", type: "varchar", default: false })
+  unpavedRoadKm: boolean
 
   @Column({ type: "decimal", precision: 10, scale: 2 })
   kilometers: number
@@ -45,13 +45,13 @@ export default class ItineraryItem {
   })
   roadCondition: string
 
-  @Column({ name: "has_wooden_bridge", default: false })
+  @Column({ name: "has_wooden_bridge", type: "varchar", default: false })
   hasWoodenBridge: boolean
 
-  @Column({ name: "has_ferry", default: false })
+  @Column({ name: "has_ferry", type: "varchar", default: false })
   hasFerry: boolean
 
-  @Column({ name: "has_toll", default: false })
+  @Column({ name: "has_toll", type: "varchar", default: false })
   hasToll: boolean
 
   @ManyToOne(() => Request, request => request.itinerary, { onDelete: 'CASCADE' })

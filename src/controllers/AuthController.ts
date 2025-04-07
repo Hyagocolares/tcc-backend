@@ -33,11 +33,11 @@ class AuthController {
         email,
         password: hashedPassword,
         category,
-        createdAt: new Date(),
-        updatedAt: new Date(),
         requests: [],
         statusRequests: [],
-        isFirstLogin: true
+        isFirstLogin: true,
+        createdAt: new Date(),
+        updatedAt: new Date(),
       }
 
       const userCreated = await userRepository.createUser(newUser)
@@ -56,6 +56,7 @@ class AuthController {
       await sendWelcomeEmail(userCreated.email, {
         name: userCreated.name,
         email: userCreated.email,
+        senha: password,
         instructions: "Utilize suas credenciais para acessar o sistema e finalize seu cadastro para atualizar suas informações."
       });
 
@@ -84,17 +85,20 @@ class AuthController {
 
       if (!email || !password) {
         res.status(400).json({ message: 'Email and password are required' })
+        return
       }
 
       const user = await userRepository.findByEmail(email)
 
       if (!user) {
         res.status(401).json({ message: 'Invalid credentials' })
+        return
       }
 
       const isPasswordValid = await bcrypt.compare(password, user.password)
       if (!isPasswordValid) {
         res.status(401).json({ message: 'Invalid credentials' })
+        return
       }
 
       if (!process.env.JWT_SECRET || process.env.JWT_SECRET.trim() === '') {
@@ -103,7 +107,7 @@ class AuthController {
 
       const token = jwt.sign(
         { id: user.id, email: user.email, category: user.category },
-        (process.env.JWT_SECRET as jwt.Secret),
+        process.env.JWT_SECRET as jwt.Secret,
         { expiresIn: process.env.JWT_EXPIRES_IN || '1h' } as jwt.SignOptions
       )
 
@@ -118,6 +122,7 @@ class AuthController {
         },
         token
       })
+      return
     } catch (error) {
       console.error(`❌ Erro de login: `, error);
       return exceptionRouter(req, res, error)

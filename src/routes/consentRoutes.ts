@@ -8,6 +8,7 @@ const consentRoutes = Router()
 consentRoutes.use(authenticate)
 
 consentRoutes.post('/', ConsentController.createConsent)
+consentRoutes.post('/director/:requestId', ConsentController.createDirectorConsent)
 consentRoutes.get('/', ConsentController.getAllConsents)
 consentRoutes.get('/:id', ConsentController.getConsentById)
 consentRoutes.put('/:id', ConsentController.updateConsent)

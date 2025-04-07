@@ -4,9 +4,10 @@ import app from './app'
 import environment from './config/environment'
 import AppDataSource from './config/ormconfig'
 
-console.log("Entities being loaded:", AppDataSource.options.entities);
+// console.log("Entities being loaded:", AppDataSource.options.entities);
 
 AppDataSource.initialize()
+  .then(() => AppDataSource.runMigrations())
   .then(() => {
     console.log('Connected to the database.')
 

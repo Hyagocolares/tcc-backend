@@ -33,6 +33,7 @@ export default class CourseRepository implements ICourseRepository {
 
   async updateCourse(id: number, course: Partial<Course>): Promise<Course> {
     console.log(`🔍 Dados recebidos no repositório (update) para ID ${id}:`, JSON.stringify(course, null, 2));
+    
     const existingCourse = await this.repository.findOne({ 
       where: { id },
       relations: ["coordinators", "teachers", "disciplines"]
@@ -43,13 +44,12 @@ export default class CourseRepository implements ICourseRepository {
       throw new Error("Course not found");
     }
   
-    existingCourse.name = course.name || existingCourse.name;
+    if (course.name) existingCourse.name = course.name;
+    
     if (course.coordinators) existingCourse.coordinators = course.coordinators;
     if (course.teachers) existingCourse.teachers = course.teachers;
     if (course.disciplines) existingCourse.disciplines = course.disciplines;
 
-    console.log("🛠️ Dados preparados para o banco (update):", JSON.stringify(existingCourse, null, 2));
-  
     return await this.repository.save(existingCourse);
   }
   

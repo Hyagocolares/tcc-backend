@@ -20,11 +20,11 @@ export default class Location {
   @Column({ length: 100 })
   municipality: string
 
-  @Column({ name: "period_start", type: "timestamp" })
-  periodStart: Date
+  @Column({ name: "period_start", type: "date", nullable: true })
+  periodStart: string
 
-  @Column({ name: "period_end", type: "timestamp" })
-  periodEnd: Date
+  @Column({ name: "period_end", type: "date", nullable: true })
+  periodEnd: string
 
   @Column({
     name: "total_distance_km",

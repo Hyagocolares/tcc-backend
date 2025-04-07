@@ -2,6 +2,7 @@
 import { Request, Response } from 'express'
 import { exceptionRouter } from '../utils/utilsRequest'
 import UserRepository from '../repositories/implementations/UserRepository'
+import bcrypt from 'bcryptjs'
 
 class UserController {
   async createUser(req: Request, res: Response): Promise<void> {
@@ -38,6 +39,7 @@ class UserController {
         res.status(404).json({ message: 'User not found' })
         return
       }
+      console.log("🔍 Dados do usuário:", JSON.stringify(user, null, 2));
       res.status(200).json({ user })
     } catch (error) {
       console.error(`❌ Erro ao buscar usuário ${id}: `, error);
@@ -51,7 +53,13 @@ class UserController {
       const { id } = req.params;
       const userData = req.body;
 
-      const { user, ...filteredUserData } = userData;
+      const { user, password, ...filteredUserData } = userData;
+
+      if (password) {
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, salt);
+        filteredUserData.password = hashedPassword;
+      }
 
       console.log("🔍 Dados filtrados para atualização:", JSON.stringify(filteredUserData, null, 2));
 
@@ -97,6 +105,28 @@ class UserController {
     } catch (error) {
       console.error(`❌ Erro ao buscar usuários filtrado: `, error);
       return exceptionRouter(req, res, error)
+    }
+  }
+
+  async getTeachers(req: Request, res: Response): Promise<void> {
+    try {
+      const userRepository = new UserRepository();
+      const teachers = await userRepository.getTeachers();
+      res.status(200).json({ teachers });
+    } catch (error) {
+      console.error('❌ Erro ao buscar usuários professores:', error);
+      return exceptionRouter(req, res, error);
+    }
+  }
+
+  async getCoordinator(req: Request, res: Response): Promise<void> {
+    try {
+      const userRepository = new UserRepository();
+      const coordinator = await userRepository.getCoordinator();
+      res.status(200).json({ coordinator });
+    } catch (error) {
+      console.error('❌ Erro ao buscar usuários professores:', error);
+      return exceptionRouter(req, res, error);
     }
   }
 }

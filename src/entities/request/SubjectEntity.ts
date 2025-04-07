@@ -6,6 +6,7 @@ import {
   ManyToOne,
   CreateDateColumn,
   UpdateDateColumn,
+  JoinColumn,
 } from "typeorm"
 import { Request } from "./RequestEntity"
 import { Discipline } from "../course/DisciplineEntity"
@@ -15,7 +16,8 @@ export default class Subject {
   @PrimaryGeneratedColumn()
   id: number
 
-  @ManyToOne(() => Discipline, (discipline) => discipline.name)
+  @ManyToOne(() => Discipline, { eager: true })
+  @JoinColumn({ name: "subject_id" })
   subject: Discipline
   
   @Column({ name: "class_group", length: 50 })
@@ -28,13 +30,13 @@ export default class Subject {
   workload: number
 
   @Column({ name: "file_data", type: "text" })
-  fileData: string
+  fileData?: string
 
   @Column({ name: "file_name", length: 255 })
-  fileName: string
+  fileName?: string
 
   @Column({ name: "file_type", length: 50 })
-  fileType: string
+  fileType?: string
 
   @ManyToOne(() => Request, (request) => request.subjects, { onDelete: 'CASCADE' })
   request: Request

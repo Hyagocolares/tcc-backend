@@ -11,4 +11,7 @@ export interface IRequestRepository {
   deleteRequest(id: number): Promise<void>
   updateRequestStatus(id: number, status: RequestStatusEnum): Promise<Request>
   searchRequests(criteria: Partial<Request>): Promise<Request[]>
+  getRequestsByStatus(status: RequestStatusEnum): Promise<Request[]>
+  updateOnlyStatus(id: number, status: RequestStatusEnum): Promise<Request>
+  updateTeacherConsent(requestId: number, teacherId: number, disciplineId: number, signature: string, consent: boolean, justification?: string): Promise<Request>
 }

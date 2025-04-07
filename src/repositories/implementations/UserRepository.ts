@@ -19,8 +19,30 @@ export default class UserRepository implements IUserRepository {
     async getUserById(id: number): Promise<User | null> {
         return this.repository.findOne({
             where: { id },
-            relations: ['requests']
-        });
+            relations: [
+                'requests',
+                'requests.subjects.subject',
+                'requests.subjects.subject.courses',
+                'disciplines',
+                'courses',
+                'teacherConsents',
+                'coordinatorConsents',
+                'directorConsents'
+            ],
+            select: [
+                'id',
+                'name',
+                'email',
+                'password',
+                'registration',
+                'category',
+                'academicBackground',  // <-- Adicionado explicitamente
+                'photoUrl',
+                'isFirstLogin',
+                'createdAt',
+                'updatedAt'
+            ]
+        })
     }
 
     async getAllUsers(): Promise<User[]> {
@@ -43,5 +65,23 @@ export default class UserRepository implements IUserRepository {
 
     async searchUsers(criteria: Partial<User>): Promise<User[]> {
         return this.repository.find({ where: criteria })
+    }
+
+    async getTeachers(): Promise<User[]> {
+        return this.repository.find({
+            where: { category: 'Teacher' },
+            relations: [
+                'disciplines'
+            ]
+        });
+    }
+
+    async getCoordinator(): Promise<User[]> {
+        return this.repository.find({
+            where: { category: 'Coordinator' },
+            relations: [
+                'disciplines'
+            ]
+        });
     }
 }

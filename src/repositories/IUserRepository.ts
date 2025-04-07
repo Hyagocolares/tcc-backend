@@ -9,4 +9,5 @@ export interface IUserRepository {
   deleteUser(id: number): Promise<void>;
   findByEmail(email: string): Promise<User | null>;
   searchUsers(criteria: Partial<User>): Promise<User[]>;
+  getTeachers(): Promise<User[]>;
 }

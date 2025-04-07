@@ -7,6 +7,10 @@ const userRoutes = Router()
 
 userRoutes.use(authenticate)
 
+userRoutes.get('/teachers', UserController.getTeachers);
+userRoutes.get('/coordinator', UserController.getCoordinator);
+userRoutes.get('/search', UserController.searchUsers);
+
 userRoutes.post('/', UserController.createUser)
 userRoutes.get('/', UserController.getAllUsers)
 userRoutes.get('/:id', UserController.getUserById)

@@ -9,7 +9,8 @@ import {
   TableInheritance,
   ChildEntity,
   ManyToMany,
-  Index
+  Index,
+  JoinTable
 } from 'typeorm'
 import { CoordinatorConsent, DirectorConsent, TeacherConsent } from '../consent/ConsentEntity'
 import { Request } from '../request/RequestEntity'
@@ -44,6 +45,9 @@ export class User {
   category?: 'Teacher' | 'Coordinator' | 'Director'
 
   @Column({ nullable: true })
+  academicBackground?: string;
+
+  @Column({ nullable: true })
   photoUrl?: string
 
   @OneToMany(() => Request, request => request.user)
@@ -62,25 +66,24 @@ export class User {
   updatedAt: Date
 }
 
-@ChildEntity('Teacher')
+@ChildEntity('teacher')
 export class Teacher extends User {
-  @Column()
-  academicBackground: string
-
   @ManyToMany(() => Course, course => course.teachers)
   courses: Course[]
 
   @ManyToMany(() => Discipline, discipline => discipline.teachers)
+  @JoinTable({
+      name: 'discipline_teachers',
+      joinColumn: { name: 'teacher_id', referencedColumnName: 'id' },
+      inverseJoinColumn: { name: 'discipline_id', referencedColumnName: 'id' }
+  })
   disciplines: Discipline[]
-
-  @OneToMany(() => Request, request => request.teacher)
-  teacherRequests: Request[]
 
   @OneToMany(() => TeacherConsent, teacherConsent => teacherConsent.userTeacher)
   teacherConsents: TeacherConsent[]
 }
 
-@ChildEntity('Coordinator')
+@ChildEntity('coordinator')
 export class Coordinator extends User {
   @Column("simple-array", { nullable: true })
   supervision: string[]
@@ -90,9 +93,6 @@ export class Coordinator extends User {
 
   @ManyToMany(() => Discipline, discipline => discipline.coordinators)
   disciplines: Discipline[]
-
-  @OneToMany(() => Request, request => request.coordinator)
-  coordinatorRequests: Request[]
 
   @OneToMany(() => CoordinatorConsent, coordinatorConsent => coordinatorConsent.userCoordinator)
   coordinatorConsents: CoordinatorConsent[]

@@ -12,8 +12,6 @@ import {
   Index
 } from "typeorm"
 import {
-  Coordinator,
-  Teacher,
   User
 } from "../user/UserEntity"
 import { RequestStatusEnum } from "../enums/RequestStatusEnum"
@@ -23,8 +21,7 @@ import Resource from "./ResourceEntity"
 import Location from "./LocationEntity"
 import {
   CoordinatorConsent,
-  DirectorConsent,
-  TeacherConsent
+  DirectorConsent
 } from "../consent/ConsentEntity"
 import TeacherConsentDiscipline from "./TeacherConsentDisciplineEntity"
 import StatusRequest from "../StatusRequestEntity"
@@ -34,12 +31,12 @@ export class Request {
   @PrimaryGeneratedColumn()
   id: number
 
-  @ManyToOne(() => User, user => user.requests, { nullable: false, eager: true })
+  @ManyToOne(() => User, user => user.requests, { nullable: false })
   user: User
 
-  @ManyToMany(() => User, { cascade: true })
+  @ManyToMany(() => User)
   @JoinTable({ name: "request_companions" })
-  companions: User[]
+  companions?: User[]
 
   @Column({
     type: "enum",
@@ -53,28 +50,19 @@ export class Request {
   statusRequests?: StatusRequest[]
 
   @OneToMany(() => Subject, subject => subject.request, { eager: true, cascade: true })
-  subjects: Subject[]
+  subjects?: Subject[]
 
   @OneToMany(() => Location, location => location.request, { eager: true, cascade: true })
-  locations: Location[]
+  locations?: Location[]
 
   @OneToMany(() => ItineraryItem, itinerary => itinerary.request, { eager: true, cascade: true })
-  itinerary: ItineraryItem[]
+  itinerary?: ItineraryItem[]
 
   @OneToMany(() => Resource, resource => resource.request, { eager: true, cascade: true })
-  resources: Resource[]
+  resources?: Resource[]
 
-  @OneToMany(() => TeacherConsentDiscipline, teacherConsentDiscipline => teacherConsentDiscipline.request,  { eager: true, cascade: true })
-  teacherConsentDisciplines: TeacherConsentDiscipline[]
-
-  @ManyToOne(() => Teacher, teacher => teacher.teacherRequests)
-  teacher?: Teacher
-
-  @ManyToOne(() => Coordinator, coordinator => coordinator.coordinatorRequests)
-  coordinator?: Coordinator
-
-  @OneToMany(() => TeacherConsent, consent => consent.request, { eager: true })
-  teacherConsents?: TeacherConsent[]
+  @OneToMany(() => TeacherConsentDiscipline, teacherConsentDiscipline => teacherConsentDiscipline.request, { eager: true, cascade: true })
+  consent?: TeacherConsentDiscipline[]
 
   @OneToMany(() => CoordinatorConsent, consent => consent.request, { eager: true })
   coordinatorConsents?: CoordinatorConsent[]

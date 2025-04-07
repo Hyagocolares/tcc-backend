@@ -17,8 +17,8 @@ export interface IRequest {
     itinerary: IItineraryItem[];
     resources: IResource[];
     consents: ITeacherConsentDiscipline[];
-    coordinatorConsents: ICoordinatorConsent[];
-    directorConsents: IDirectorConsent[];
+    coordinatorConsents?: ICoordinatorConsent[];
+    directorConsents?: IDirectorConsent[];
     createdAt: Date;
     updatedAt: Date;
   }

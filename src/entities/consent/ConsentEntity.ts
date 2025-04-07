@@ -5,12 +5,14 @@ import {
   CreateDateColumn,
   Entity,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   TableInheritance,
   UpdateDateColumn
 } from "typeorm";
 import { Coordinator, Director, Teacher } from "../user/UserEntity";
 import { Request } from "../request/RequestEntity";
+import TeacherConsentDiscipline from "../request/TeacherConsentDisciplineEntity";
 
 @Entity('consents')
 @TableInheritance({ column: { type: 'varchar', name: 'consent_type' } })
@@ -20,9 +22,6 @@ export class Consent {
 
   @Column()
   accepted: boolean;
-
-  @Column()
-  signature: string;
 
   @Column({ nullable: true })
   opinion?: string;
@@ -40,7 +39,10 @@ export class TeacherConsent extends Consent {
   @ManyToOne(() => Teacher, teacher => teacher.teacherConsents)
   userTeacher: Teacher;
 
-  @ManyToOne(() => Request, request => request.teacherConsents)
+  @OneToMany(() => TeacherConsentDiscipline, teacherConsentDiscipline => teacherConsentDiscipline.teacher.teacherConsents)
+  disciplineConsents: TeacherConsentDiscipline[];
+
+  @ManyToOne(() => Request, request => request.consent)
   request: Request;
 }
 

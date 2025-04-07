@@ -5,6 +5,7 @@ import {
   Entity,
   JoinTable,
   ManyToMany,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn
 } from "typeorm"
@@ -13,6 +14,7 @@ import {
   Coordinator,
   Teacher
 } from "../user/UserEntity"
+import TeacherConsentDiscipline from "../request/TeacherConsentDisciplineEntity"
 
 @Entity('disciplines')
 export class Discipline {
@@ -35,11 +37,6 @@ export class Discipline {
     eager: true,
     onDelete: 'CASCADE'
   })
-  @JoinTable({
-    name: 'discipline_teachers',
-    joinColumn: { name: 'discipline_id' },
-    inverseJoinColumn: { name: 'teacher_id' }
-  })
   teachers: Teacher[];
 
   @ManyToMany(() => Coordinator, coordinator => coordinator.disciplines, {
@@ -52,6 +49,9 @@ export class Discipline {
     inverseJoinColumn: { name: 'coordinator_id' }
   })
   coordinators: Coordinator[];
+
+  @OneToMany(() => TeacherConsentDiscipline, teacherConsentDiscipline => teacherConsentDiscipline.discipline)
+  consents: TeacherConsentDiscipline[];
 
   @CreateDateColumn()
   createdAt: Date

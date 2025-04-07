@@ -21,8 +21,10 @@ const environment = {
     user: process.env.MAILTRAP_USER || '6ba9ac03902e18',
     pass: process.env.MAILTRAP_PASS || 'a73025a345322c',
     from: process.env.EMAIL_FROM || 'seuemail@dominio.com',
+  },
+  frontend: {
+    url: process.env.FRONTEND_URL || 'http://localhost:5173'
   }
-
 }
 
 export default environment

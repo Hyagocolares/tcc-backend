@@ -16,11 +16,9 @@ export default class StatusRequest {
   @PrimaryGeneratedColumn()
   id: number
 
-  // Relação com a requisição (Request)
   @ManyToOne(() => Request, request => request.statusRequests, { nullable: false })
   request: Request
 
-  // Relação com o usuário que aprovou ou rejeitou o consentimento
   @ManyToOne(() => User, user => user.statusRequests, { nullable: false })
   user: User
 
