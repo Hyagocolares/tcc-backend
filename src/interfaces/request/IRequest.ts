@@ -22,3 +22,7 @@ export interface IRequest {
     createdAt: Date;
     updatedAt: Date;
   }
+
+  export interface IRequestId {
+    id: number;
+  }

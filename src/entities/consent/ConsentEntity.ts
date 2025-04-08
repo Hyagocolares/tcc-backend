@@ -8,7 +8,8 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
   TableInheritance,
-  UpdateDateColumn
+  UpdateDateColumn,
+  JoinColumn
 } from "typeorm";
 import { Coordinator, Director, Teacher } from "../user/UserEntity";
 import { Request } from "../request/RequestEntity";
@@ -61,6 +62,10 @@ export class DirectorConsent extends Consent {
   @ManyToOne(() => Director, director => director.directorConsents)
   userDirector: Director;
 
-  @ManyToOne(() => Request, request => request.directorConsents)
+  @Column({ name: 'requestId', nullable: false })
+  requestId: number;
+
+  @ManyToOne(() => Request, request => request.directorConsents, { nullable: false })
+  @JoinColumn({ name: 'requestId' })
   request: Request;
 }

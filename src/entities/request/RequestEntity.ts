@@ -67,7 +67,7 @@ export class Request {
   @OneToMany(() => CoordinatorConsent, consent => consent.request, { eager: true })
   coordinatorConsents?: CoordinatorConsent[]
 
-  @OneToMany(() => DirectorConsent, consent => consent.request, { eager: true })
+  @OneToMany(() => DirectorConsent, consent => consent.request, { eager: true, cascade: true })
   directorConsents?: DirectorConsent[]
 
   @CreateDateColumn({ name: "created_at" })

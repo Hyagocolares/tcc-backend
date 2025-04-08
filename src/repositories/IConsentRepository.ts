@@ -8,4 +8,5 @@ export interface IConsentRepository {
   updateConsent(id: number, consent: Partial<Consent>): Promise<Consent>;
   deleteConsent(id: number): Promise<void>;
   searchConsents(criteria: Partial<Consent>): Promise<Consent[]>;
+  getDirectorConsentByRequestId(requestId: number): Promise<DirectorConsent | null>;
 }
